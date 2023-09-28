@@ -6,4 +6,6 @@ for shop in shopping_dict:
 
     
 
+    
+
 
