@@ -11,7 +11,7 @@ text = shopping(items, 'card', 'small local shop')
 print(text)
 
 print("Pokażę co wpiszesz!")
-tekst = input("dużo czekolady")
+tekst = input("Wpisz tu coś")
 
 print("Proszę kup:  ***%s***" % tekst)
 
