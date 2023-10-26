@@ -1,80 +1,23 @@
-from faker import Faker
-fake = Faker('pl_PL')
-from faker.generator import random
-fake.random
-fake.random.getstate()
 
-
-class BaseContact:
-   def __init__(self, first_name, last_name, phone_number, email):
-       self.first_name = first_name
-       self.last_name = last_name
-       self.phone_number = phone_number
-       self.email = email
-       
-
-   @property
-   def label_lenght(self):
-       return len(self.last_name  + " " + self.first_name)
-
-   def __str__(self):
-      return f'{self.first_name} {self.last_name} {self.phone_number}'
-   
-   def contact(self):
-      print(f"Kontaktuje się z {self.first_name} {self.last_name} i dzwonię pod nr: {self.phone_number}")
-
-class BusinessContact(BaseContact):
-   def __init__(self,  first_name, last_name, phone_number, email, occupation, company, biz_number):
-      super().__init__( first_name, last_name, phone_number, email)
-      self.occupation = occupation
-      self.biz_number = biz_number
-      self.company = company
-      
-
-   @property
-   def label_lenght():
-        return len(fake.last_name  + " " + fake.first_name)
-
-
-   def __str__(self):
-      r = super().__str__()
-      r += f"Pracuje w: {self.company}"
-      return r
-   
-   def contact(self):
-      print("Kontaktuje się z {self.first_name} {self.last_name} i dzwonię pod nr: {self.biz_number}")
-
-   
-   def create_contacts():
-      kind_contact = input("Wybierz rodzaj wizytówki: 1 - BaseContact, 2 - BusinessContact:")
-      quantity = input("Wpisz liczbę wizytówek:")  
-      result = kind_contact + quantity
-      print(result)  
-    
-cards = [] 
-
-for c, c1 in cards:
-   print(c)
-   print(c1)
-
-c = BaseContact(first_name=fake.first_name(), last_name=fake.last_name(), phone_number=fake.phone_number(), email=fake.email())
-cards.append(c)
-
-c1 = BusinessContact(first_name=fake.first_name(), last_name=fake.last_name(), biz_number=fake.phone_number, phone_number=fake.phone_number, email=fake.email, occupation=fake.occupation, company=fake.company)
-cards.append(c1)
-
-
-if __name__ == "__main__":
-  c.create_contacts()
-  c.contact()
-  c1.create_contacts()
-  c1.contact()
-  BaseContact.label_lenght
-  BusinessContact.label_lenght
+class Card:
+    def __init__(self, first_name, last_name, company_name, worksite, e_mail):
+        self.first_name = first_name,
+        self.last_name = last_name
+        self.company_name = company_name
+        self.e_mail = e_mail
+        self.worksite = worksite
 
 
 
+card_1 = Card(first_name="Zosia", last_name="Samosia", company_name="'Zrób to sam'", worksite= "menager", e_mail="zosia@wp.pl")
+card_2 = Card(first_name="Kasia", last_name="Kowalska", company_name="'Model&Model'", worksite="Modelka", e_mail="Kasia@com")
+card_3 = Card(first_name="Jasiu", last_name="Mądry", company_name="'Spółka Mądry'", worksite="Malarz", e_mail="Jas@com")
+card_4 = Card(first_name="Czesiu", last_name="Szybki", company_name="Fast&c.o", worksite="Tech. grzewcza", e_mail="Tech.com@wp.pl")                 
 
+cards = [card_1, card_2, card_3, card_4]
+by_first_name = sorted(cards, key=lambda card: card.first_name)
+by_company_name = sorted(cards, key=lambda card: card.company_name)
+print(by_company_name())
 
 
 
