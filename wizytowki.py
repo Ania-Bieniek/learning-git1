@@ -23,34 +23,43 @@ class BaseContact:
    def contact(self):
       print(f"Kontaktuje się z {self.first_name} {self.last_name} i dzwonię pod nr: {self.phone_number}")
 
+
 class BusinessContact(BaseContact):
-   def __init__(self,  first_name, last_name, phone_number, email, occupation, company, biz_number):
+   def __init__(self,  first_name, last_name, phone_number, email, job, company, biz_number):
       super().__init__( first_name, last_name, phone_number, email)
-      self.occupation = occupation
+      self.job = job
       self.biz_number = biz_number
       self.company = company
-      
 
-   @property
-   def label_lenght():
-        return len(fake.last_name  + " " + fake.first_name)
-
+   def contact(self):
+      return ("Kontaktuje się z {self.first_name} {self.job} i dzwonię : {self.biz_number}")  
 
    def __str__(self):
       r = super().__str__()
-      r += f"Pracuje w: {self.company}"
+      r += f"Pracuje w: {self.company} {self.job} {self.biz_number}"
       return r
    
-   def contact(self):
-      print("Kontaktuje się z {self.first_name} {self.last_name} i dzwonię pod nr: {self.biz_number}")
+def create_contacts(kind, quantity):
+   cards = []
+   for _ in range(quantity):
+      name = fake.first_name()
+      last_name = fake.last_name()
+      phone = fake.phone_number()
+      email = fake.email()
 
+
+   if kind == "private":
+      c = BaseContact(first_name=name, last_name=last_name, phone_number=phone, email=email)
+      cards.append(c)
+   elif kind=="business":
+      cards.append(
+         BusinessContact(
+            first_name=name, last_name=last_name, phone_number=phone, email=email,
+            biz_number=fake.phone(), job=fake.job(), company=fake.company()
+            )
+         )
+      return cards   
    
-   def create_contacts():
-      kind_contact = input("Wybierz rodzaj wizytówki: 1 - BaseContact, 2 - BusinessContact:")
-      quantity = input("Wpisz liczbę wizytówek:")  
-      result = kind_contact + quantity
-      print(result)  
-    
 cards = [] 
 
 for c, c1 in cards:
@@ -60,17 +69,15 @@ for c, c1 in cards:
 c = BaseContact(first_name=fake.first_name(), last_name=fake.last_name(), phone_number=fake.phone_number(), email=fake.email())
 cards.append(c)
 
-c1 = BusinessContact(first_name=fake.first_name(), last_name=fake.last_name(), biz_number=fake.phone_number, phone_number=fake.phone_number, email=fake.email, occupation=fake.occupation, company=fake.company)
-cards.append(c1)
+cards = BusinessContact(first_name=fake.first_name(), last_name=fake.last_name(), biz_number=fake.phone_number, phone_number=fake.phone_number, email=fake.email, job=fake.job, company=fake.company)
 
 
 if __name__ == "__main__":
-  c.create_contacts()
-  c.contact()
-  c1.create_contacts()
-  c1.contact()
-  BaseContact.label_lenght
-  BusinessContact.label_lenght
+   c.contact()
+   cards.create_contacts()
+   cards.contact()
+   BaseContact.label_lenght
+   BusinessContact.label_lenght
 
 
 
