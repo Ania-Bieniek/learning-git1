@@ -12,16 +12,7 @@ class Movie:
    def __repr__(self) -> str:
        return f'{self.title}{self.year}' 
    
-
-def search(library):
-    x = input("Wybierz tytuł:")
-    for i in list:
-        if x == i.title:
-            print("Tytuł jest w biblitece")
-            return
-    print("Nie mam takiego tytułu w bibiliotece")
-
-
+   
 class Serie(Movie):
     def __init__(self, title, year, kind, number_seasons, number_episode):
         super().__init__(title, year, kind)
