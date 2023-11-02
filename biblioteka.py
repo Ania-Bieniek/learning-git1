@@ -1,78 +1,81 @@
 
-class Movies:
-   def __init__(self, title, year_edition, kind, number_pley):
+class Movie:
+   def __init__(self, title, year, kind):
        self.title = title
-       self.year_edition = year_edition
+       self.year = year
        self.kind = kind
-       self.number_pley = number_pley
-       #Variables
-       self.pley = 0
+       self.play_counter = 0
 
-   def advance_pley(self, step = 0):
-       self.pley += step
+   def pley(self):
+       self.play_counter += 1
 
-   def __str__(self) -> str:
-       return f'{self.title}{self.year_edition}' 
-   
    def __repr__(self) -> str:
-       return f"Movies(title={self.title} year_edition={self.year_edition} kind={self.kind} number_pley={self.number_pley})"
+       return f'{self.title}{self.year}' 
    
-   def get_movies(list):
-        for i in list:
-            if type(i) == Movies:
-                list_movie.append(i)
-        list_m1 = sorted(list_movie, key=lambda movie: movie.title)
 
-   def search(list):
-        x = input("Wybierz tytuł:")
-        for i in list:
-            if x == i.title:
-                print("Tytuł jest w biblitece")
-                return
-        print("Nie mam takiego tytułu w bibiliotece")
+def search(library):
+    x = input("Wybierz tytuł:")
+    for i in list:
+        if x == i.title:
+            print("Tytuł jest w biblitece")
+            return
+    print("Nie mam takiego tytułu w bibiliotece")
 
 
-class Series(Movies):
-    def __init__(self, title, year_edition, kind, number_episode, number_season, number_pley):
-        super().__init__(title, year_edition, kind, number_pley)
+class Serie(Movie):
+    def __init__(self, title, year, kind, number_seasons, number_episode):
+        super().__init__(title, year, kind)
         self.number_episode = number_episode
-        self.number_season = number_season
-        #Variables
-        self.pley = 0
+        self.number_seasons = number_seasons
 
-    def advance_pley(self, step = 0):
-        self.pley += step
-
-    def __str__(self) -> str:
-        return f'S{self.number_seasons:10}E{self.number_epizode:10}'
-    
     def __repr__(self) -> str:
-       return f"Series(title={self.title} year_edition={self.year_edition} kind={self.kind} number_pley={self.number_pley})"
-   
-    def get_series(list):
-        for i in list:
-            if type(i) == Series:
-                list_series.append(i)
-        list_s1 = sorted(list_series, key=lambda series: series.title)
+        return f'{self.title} S{self.number_seasons:02}E{self.number_episode:02}'
+    
+     
+library =[]
 
-    def search(list):
-        x = input("Wybierz tytuł:")
-        for i in list:
-            if x == i.title:
-                print("Tytuł jest w biblitece")
-                return
-        print("Nie mam takiego tytułu w bibiliotece")
+m = Movie(title="Kong", year=2017, kind="fantasy")
+m2 = Movie(title="Megalodon", year=2018, kind="horror")
 
-list_m1 = Movies(title="Kong", year_edition=2017, kind="fantasy", number_pley=0, )
-list_m2 = Movies(title="Megalodon", year_edition=2018, kind="horror", number_pley=0)
+s = Serie(title="Dr House", year=2004, kind="medyczny", number_seasons=1, number_episode=1) 
+s2 = Serie(title="Szpital Amsterdam", year=2018, kind="medyczny", number_seasons=1, number_episode=1)  
 
-list_s1 = Series(title="Dr House", year_edition=2004, kind="medyczny", number_episode=1, number_season=1, number_pley=0) 
-list_s2 = Series(title="Szpital Amsterdam", year_edition=2018, kind="medyczny", number_episode=1, number_season=1, number_pley=0)  
+library.append(m)
+library.append(s)
+library.append(m2)
+library.append(s2)
 
-list_movie = ["Megalodon", "Kong"]
-list_series = ["Dr House", "Szpital Amsterdam"]
+print(library)
 
-list = [f'{Series} + {Movies}']
-#list_m1.get_movies()
-list_m1.search()
-list_m1.advance_pley
+
+def get_movies(library):
+    r = []
+    for el in library:
+        if type(el) == Movie:
+            r.append(el)
+        
+    return r
+
+print(get_movies(library))
+
+def get_series(library):
+    r = []
+    for el in library:
+        if type(el) == Serie:
+            r.append(el)
+    return r
+
+print(get_series(library))
+        
+
+def search(library):
+    a = input("Wybierz tytuł:")
+    for i in library:
+        if a == i.title:
+            print("Tytuł jest w biblitece")
+            return
+    print("Nie mam takiego tytułu w bibliotece")
+
+
+print(search(library))
+
