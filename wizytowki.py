@@ -79,9 +79,7 @@ c1 = BusinessContact(first_name=fake.first_name(), last_name=fake.last_name(), p
 if __name__ == "__main__":
    c.create_contacts()
    c.contact()
-   
    c1.contact()
-   
    BaseContact.label_lenght
    BusinessContact.label_lenght
 
