@@ -70,3 +70,27 @@ def search(library):
 
 print(search(library))
 
+
+def generate_views(library):
+    for i in library:
+        for a in range(1, 101):
+           print(f"{i}  {int(a)}")
+        
+print(generate_views(library))
+
+
+def generate_views_10(library):
+       for i in library:
+           for b in range(1, 11):
+               print(f"{i} {int(b)}")
+
+generate_views_10(library)
+
+
+
+           
+
+           
+
+
+    
